@@ -1,0 +1,199 @@
+<html>
+	<head>
+		<title>Homepage</title><link rel="icon2.png" href="icon2.png">
+	</head>
+	<body background="woodd.jpg" link="black" alink="black" vlink="black" >
+		<a href="weblogin.html"><input type="submit" value="Logout"></a>
+		<p align="center"><font size="8" face="Broadway" color="black">
+		<h1 align="center"><hr>HOOPS FACTORY<hr></h1></font>
+		</p>
+		
+	<p align="left">
+		<img src="icon2.png" border="0" width="100" height="90">
+			<a href="profile.html" title="profile"><button width="75"><font size="4" face="arial">Profile</font></button></a>
+	<br></br>
+		
+	<table align="center" border="0" cellpadding="10" cellspacing="0">
+		<tr body background="woodd.jpg">
+		<th><font size="6" color="black" face="broadway">CATEGORY</font></th>
+			<font size="6" color="black" face="broadway">
+			<th><a href="adidas.html">ADIDAS</a></th>
+			<th><a href="nike.html">NIKE</a></th>	
+			<th><a href="airjordan.html">AIR JORDAN</a></th>
+		</tr>
+	</table>
+	<div class="container-fluid">
+        <h1>Kontak</h1>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-12 col-md-2 control-label">Nama</label>
+                <div class="col-sm-12 col-md-10">
+                    <input type="text" id="nama" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-12 col-md-2 control-label">Alamat</label>
+                <div class="col-sm-12 col-md-10">
+                <input type="text" id="alamat" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-12 col-md-2 control-label">Telepon</label>
+                <div class="col-sm-12 col-md-10">
+                <input type="text" id="telepon" class="form-control">
+                </div>
+            </div>
+            <div class="pull-right">
+                <button onclick="tambahData()" class="btn btn-primary" type="button">Tambah</button>
+                <button class="btn btn-primary" type="button" style="display: none" id="btnUpdate">Update</button>
+                <button class="btn btn-default" type="button" onclick="resetForm()">Cancel</button>
+            </div>
+        </form>
+        <table id="kontak" class="table">
+        <thead>
+            <tr>
+                <td>Nama</td>
+                <td>Alamat</td>
+                <td>Telepon</td>
+                <td>Action</td>
+            </tr>
+
+        </thead>
+        <tbody>		
+        </tbody>
+        </table>
+    </div>
+	<script>
+        function newCol(value) {
+            var element = document.createElement("td")
+            element.innerHTML = value
+            return element
+        }
+
+        function newRow(nama, alamat, telepon) {
+			// tambahkan tr baru dan td baru
+			var tr = document.createElement("tr")
+			tr.appendChild(newCol(nama))
+			td = document.createElement("td")
+			tr.appendChild(newCol(alamat))
+			td = document.createElement("td")
+			tr.appendChild(newCol(telepon))
+
+            // tambahkan tombol
+            td = document.createElement("td")
+            var edit = document.createElement("button")
+            edit.setAttribute("class", "btn btn-default")
+            edit.innerHTML = "Edit"
+            td.appendChild(edit)
+            edit.onclick = function() { editData(tr) }
+
+            var hapus = document.createElement("button")
+            hapus.innerHTML = "Hapus"
+            hapus.setAttribute("class", "btn btn-default")
+            td.appendChild(hapus)
+            hapus.onclick = function() { hapusData(tr) }
+
+            tr.appendChild(td)
+
+            return tr
+        }
+
+        function hapusData(element) {
+            if (confirm("Yakin Hapus?"))
+                element.remove()
+        }
+
+        function resetForm() {
+            document.querySelector("form").reset()
+            document.querySelector("#btnUpdate").style.display = "none"
+            document.querySelector("#nama").focus()
+        }
+
+        function editData(element) {
+			var nama = document.querySelector("#nama")
+			var alamat = document.querySelector("#alamat")
+			var telepon = document.querySelector('#telepon')
+
+            children = element.querySelectorAll("td")
+            nama.value = children[0].innerHTML
+            alamat.value = children[1].innerHTML
+            telepon.value = children[2].innerHTML
+
+            nama.focus()
+
+            var btnUpdate = document.querySelector("#btnUpdate")
+            btnUpdate.style.display = "inline"
+            btnUpdate.onclick = function() { updateData(element) }
+        }
+
+        function updateData(element) {
+			var nama = document.querySelector("#nama").value
+			var alamat = document.querySelector("#alamat").value
+			var telepon = document.querySelector('#telepon').value
+
+            tr = newRow(nama, alamat, telepon)
+
+            table = document.querySelector("#kontak")
+			table.querySelector("tbody").replaceChild(tr, element)
+
+            resetForm()
+        }
+
+		function tambahData() {
+			// baca input
+			var nama = document.querySelector("#nama").value
+			var alamat = document.querySelector("#alamat").value
+			var telepon = document.querySelector('#telepon').value
+
+            tr = newRow(nama, alamat, telepon)
+			
+			// insert ke table
+			var table = document.querySelector("#kontak")
+			table.querySelector("tbody").appendChild(tr)
+
+            resetForm()
+		}
+	</script>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	
+	<table align="center" border="0" cellpadding="0" cellspacing="70">
+		<img src="hf.jpg" width="1490" height="700">
+		<img src="hoops2.jpg" width="1490" height="700">
+		<br>
+		<font size="8" face="broadway" color="black">
+		<h1 align="center"><hr>NEW ARRIVAL!<hr></h1></font>
+	</table>
+	
+	<table align="center" border="0" cellspacing="0" cellpadding="70">
+		<tr><td>
+		<a href="nikekobe11.html">
+			<img src="basket1.jpg" width="300" height="300">
+            <td width="300"><h1>Nike Kobe 11</h1></td>
+		</a>
+        </td></tr>
+        
+		<tr><td>
+		<a href="nikekyrie2.html">
+			<img src="basket2.png" width="300" height="300">
+			<td width="300"><h1>Nike Kyrie 2</h1></td>
+		</a>
+        </td></tr>
+	
+		<tr><td>
+		<a href="crazyexplosive.html">
+			<img src="basket4.jpg" width="300" height="300">
+			<td width="300"><h1>Adidas Crazy Explosive</h1></td>
+		</a>
+        </td></tr>
+               
+		<tr><td>
+		<a href="airjordanxxxi.html">
+			<img src="basket7.jpg" width="300" height="300">
+			<td width="300"><h1>Air jordan XXXI</h1></td>
+		</a>
+		</td></tr>
+    </font></table>
+	</font>
+	</body>
+</html>
